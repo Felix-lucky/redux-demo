@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {addNumber,removeNumber,add} from './reducers/index';
+import {addNumber,removeNumber,addNUmberAsync} from './actions/index';
+
 
 class App extends Component {
   render() {
+    console.log(this.props)
     return (
-      <div className="App">
+      <div >
           <div>{this.props.num}</div>
           <button onClick={this.props.addNumber}>add</button>
           <button onClick={this.props.removeNumber}>remove</button>
-          <button onClick={this.props.add}>add 2s</button>
+          <button onClick={this.props.addNUmberAsync}>addNUmberAsync</button>
       </div>
     );
   }
 }
 
-const stateProps=(state)=>{
-  return {num:state}
-}
-App=connect(stateProps,{addNumber,removeNumber,add})(App);
+App=connect(state=>({num:state.counter}),{addNumber,removeNumber,addNUmberAsync})(App);
+
 export default App;
